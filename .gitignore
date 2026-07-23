@@ -1,0 +1,12 @@
+node_modules/
+dist/
+.vite/
+coverage/
+test-results/
+playwright-report/
+
+# Developer-local env (use .env.example as the template)
+.env.local
+
+# TypeScript incremental build artifacts
+*.tsbuildinfo

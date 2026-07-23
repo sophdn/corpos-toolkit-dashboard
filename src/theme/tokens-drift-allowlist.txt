@@ -1,0 +1,24 @@
+# Class-(b) drift allow-list — bug 1372
+#
+# These var(--*) references exist in apps/dashboard/src/**/*.module.css
+# but are NOT defined in theme/tokens.css. Each entry is tolerated by
+# the precommit drift gate because resolving it needs a design-system
+# decision (define the token for both themes, or replace in-place with
+# an existing token), not a mechanical rename. The class-(a) renames
+# already landed; these are the leftovers.
+#
+# When you add one of these tokens to tokens.css, delete the matching
+# line here. New drift not on this list fails the gate.
+#
+# Format: one CSS-variable name per line, lines starting with # ignored.
+# The precommit gate extracts identifiers via `grep -oE -- '--[a-z-]+'`.
+
+--color-bg-subtle
+--color-link
+--color-surface-hover
+--color-surface-recessed
+--color-tag
+--color-tag-text
+--font-mono
+--font-size-md
+--font-weight-regular

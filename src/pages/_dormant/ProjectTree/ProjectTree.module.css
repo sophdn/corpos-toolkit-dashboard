@@ -1,0 +1,219 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.pageHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+
+.title {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  line-height: var(--line-height-tight);
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  flex-wrap: wrap;
+}
+
+.breadcrumbSep {
+  color: var(--color-border-strong);
+  user-select: none;
+}
+
+.breadcrumbSegment {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: var(--color-accent);
+  font-size: var(--font-size-sm);
+  font-family: var(--font-family-mono);
+}
+
+.breadcrumbSegment:hover {
+  text-decoration: underline;
+}
+
+.breadcrumbCurrent {
+  font-family: var(--font-family-mono);
+  color: var(--color-text-primary);
+}
+
+.state {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+  padding: var(--space-8) 0;
+  text-align: center;
+}
+
+.tree {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.entry {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-2);
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-sm);
+  font-family: var(--font-family-mono);
+  color: var(--color-text-primary);
+  transition: background-color 0.1s;
+}
+
+.entry:hover {
+  background-color: var(--color-surface-hover);
+}
+
+.entryDir {
+  cursor: pointer;
+  color: var(--color-accent);
+}
+
+.entryDir:hover {
+  color: var(--color-accent);
+}
+
+.icon {
+  font-size: var(--font-size-base);
+  flex-shrink: 0;
+  user-select: none;
+}
+
+.name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+}
+
+.statsCard {
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-surface-raised);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-sm);
+}
+
+.statsCardHeader {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+
+.statsCardTitle {
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  white-space: nowrap;
+}
+
+.statsSep {
+  color: var(--color-border-strong);
+  user-select: none;
+}
+
+.statItem {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-1);
+}
+
+.statValue {
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  font-variant-numeric: tabular-nums;
+}
+
+.statLabel {
+  color: var(--color-text-muted);
+}
+
+.statsToggle {
+  margin-left: auto;
+  background: none;
+  border: none;
+  padding: 0 var(--space-1);
+  cursor: pointer;
+  color: var(--color-text-muted);
+  line-height: 1;
+  display: flex;
+  align-items: center;
+}
+
+.statsToggle:hover {
+  color: var(--color-text-primary);
+}
+
+.caretOpen {
+  display: inline-block;
+  font-size: var(--font-size-base);
+  transition: transform 0.15s ease;
+  transform: rotate(0deg);
+}
+
+.caretClosed {
+  display: inline-block;
+  font-size: var(--font-size-base);
+  transition: transform 0.15s ease;
+  transform: rotate(-90deg);
+}
+
+.sectionHeader {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: var(--space-3) var(--space-2) var(--space-1);
+}
+
+.breakdown {
+  width: 100%;
+  margin-top: var(--space-3);
+  font-size: var(--font-size-xs);
+  font-family: var(--font-family-mono);
+  border-collapse: collapse;
+}
+
+.breakdownHead {
+  color: var(--color-text-muted);
+  text-align: left;
+  font-size: var(--font-size-xs);
+}
+
+.breakdownHead th {
+  padding: var(--space-1) var(--space-2);
+  border-bottom: 1px solid var(--color-border);
+  font-weight: var(--font-weight-medium);
+}
+
+.breakdownRow td {
+  padding: var(--space-1) var(--space-2);
+  color: var(--color-text-secondary);
+}
+
+.breakdownRow td:first-child {
+  color: var(--color-text-primary);
+}

@@ -1,0 +1,95 @@
+.panel {
+  padding: 1rem;
+}
+
+.title {
+  margin: 0 0 0.5rem 0;
+}
+
+.hint,
+.empty {
+  color: var(--color-text-muted);
+  font-size: 0.875rem;
+}
+
+.traceList {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0 0 0;
+}
+
+.trace {
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  padding: 0.5rem 0.75rem;
+  margin-bottom: 0.5rem;
+  background: var(--color-surface);
+  color: var(--color-text-primary);
+}
+
+.childList {
+  list-style: none;
+  padding-left: 1.5rem;
+  margin: 0.5rem 0 0 0;
+  border-left: 2px solid var(--color-border);
+}
+
+.child {
+  padding: 0.25rem 0;
+}
+
+.spanLabel {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  font-family: ui-monospace, SFMono-Regular, monospace;
+  font-size: 0.875rem;
+}
+
+.spanLabelHighlighted {
+  background: var(--color-positive-subtle);
+  outline: 2px solid var(--color-positive);
+  padding: 0.05rem 0.25rem;
+  border-radius: 3px;
+}
+
+.spanName {
+  font-weight: 600;
+}
+
+.spanMeta {
+  color: var(--color-text-muted);
+  font-size: 0.75rem;
+}
+
+.errorMsg {
+  color: var(--color-danger);
+  font-size: 0.75rem;
+  margin-left: 0.5rem;
+}
+
+.badgeOk,
+.badgeError,
+.badgePending {
+  display: inline-block;
+  padding: 0.05rem 0.4rem;
+  border-radius: 3px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.badgeOk {
+  background: #d6f0d6;
+  color: #135013;
+}
+
+.badgeError {
+  background: #f8d6d6;
+  color: #7a1414;
+}
+
+.badgePending {
+  background: #fff3cd;
+  color: #6b5a00;
+}

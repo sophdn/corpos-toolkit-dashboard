@@ -1,0 +1,391 @@
+.page {
+  padding: 1.5rem;
+  max-width: 1200px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.heading {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.controlLabel {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+}
+
+.windowSelect {
+  padding: 0.25rem 0.5rem;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  background: var(--color-surface);
+}
+
+.modelSummary {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.modelSummaryTitle {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-muted);
+  margin-bottom: 0.5rem;
+}
+
+.modelSummaryRows {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.modelSummaryRow {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1.5fr 1fr;
+  gap: 1rem;
+  align-items: baseline;
+  font-size: 0.875rem;
+}
+
+.modelName {
+  font-family: var(--font-family-mono);
+  font-weight: 600;
+}
+
+.modelStat {
+  color: var(--color-text-primary);
+}
+
+.modelTasks {
+  color: var(--color-text-muted);
+  font-size: 0.8125rem;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+
+.table th {
+  text-align: left;
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid var(--color-border);
+  font-weight: 600;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+}
+
+.table td {
+  padding: 0.625rem 0.75rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.taskRow {
+  cursor: pointer;
+}
+
+.taskRow:hover {
+  background: var(--color-surface-raised);
+}
+
+.taskId {
+  font-family: var(--font-family-mono);
+  font-weight: 600;
+}
+
+.staleCell {
+  display: inline-block;
+  padding: 0.125rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.8125rem;
+}
+
+.stale-green {
+  background: rgba(76, 175, 80, 0.12);
+  color: #2e7d32;
+}
+
+.stale-yellow {
+  background: rgba(255, 193, 7, 0.18);
+  color: #ed6c02;
+}
+
+.stale-red {
+  background: rgba(244, 67, 54, 0.15);
+  color: #c62828;
+}
+
+.stale-unknown {
+  background: var(--color-surface);
+  color: var(--color-text-muted);
+}
+
+.bugCount {
+  display: inline-block;
+  padding: 0.125rem 0.5rem;
+  border-radius: 12px;
+  background: rgba(244, 67, 54, 0.15);
+  color: #c62828;
+  font-weight: 600;
+  font-size: 0.8125rem;
+}
+
+.bugCountZero {
+  color: var(--color-text-muted);
+}
+
+.warmingUpBadge {
+  display: inline-block;
+  padding: 0.125rem 0.5rem;
+  border-radius: 4px;
+  background: rgba(120, 120, 120, 0.15);
+  color: var(--color-text-muted);
+  font-size: 0.75rem;
+  font-style: italic;
+}
+
+.expandRow {
+  background: var(--color-surface);
+}
+
+.expandCell {
+  padding: 0 !important;
+}
+
+.expand {
+  padding: 1rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.expandSection {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.expandLabel {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-muted);
+}
+
+.expandValue {
+  font-size: 0.875rem;
+}
+
+.expandError {
+  color: #c62828;
+  font-size: 0.875rem;
+}
+
+.modelChip {
+  display: inline-block;
+  margin-right: 0.5rem;
+  padding: 0.125rem 0.5rem;
+  background: var(--color-surface-raised);
+  border-radius: 4px;
+  font-family: var(--font-family-mono);
+  font-size: 0.8125rem;
+}
+
+.bugsList {
+  list-style: disc;
+  padding-left: 1.25rem;
+  margin: 0;
+}
+
+.bugSlug {
+  font-family: var(--font-family-mono);
+  color: var(--color-text-muted);
+  font-size: 0.8125rem;
+}
+
+.sparklineRow {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.sparklineCol {
+  flex: 1;
+  min-width: 240px;
+}
+
+.sparklineTitle {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-muted);
+  margin-bottom: 0.5rem;
+}
+
+.bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.25rem;
+  height: 80px;
+}
+
+.barCol {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  min-width: 24px;
+}
+
+.bar {
+  width: 100%;
+  background: var(--color-accent);
+  border-radius: 2px 2px 0 0;
+  transition: height 0.15s ease;
+}
+
+.barGap {
+  background: var(--color-border);
+}
+
+.barDate {
+  font-size: 0.6875rem;
+  color: var(--color-text-muted);
+  margin-top: 0.25rem;
+}
+
+.retrievalPanel {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.retrievalPanelHeader {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.retrievalPanelTitle {
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.retrievalPanelSubtitle {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+}
+
+.retrievalRows {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.retrievalRow {
+  display: grid;
+  grid-template-columns: 1.5fr 3fr 1fr 1.5fr;
+  gap: 1rem;
+  align-items: center;
+  font-size: 0.8125rem;
+  padding: 0.375rem 0;
+  border-top: 1px solid var(--color-border);
+}
+
+.retrievalRow:first-child {
+  border-top: none;
+}
+
+.retrievalActionName {
+  font-family: var(--font-family-mono);
+  font-weight: 600;
+}
+
+.retrievalKinds {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.retrievalKindCell {
+  display: flex;
+  flex-direction: column;
+  padding: 0.25rem 0.5rem;
+  background: var(--color-surface-raised);
+  border-radius: 4px;
+  min-width: 80px;
+}
+
+.retrievalKindName {
+  font-size: 0.6875rem;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.retrievalKindRate {
+  font-size: 0.9375rem;
+  font-weight: 600;
+}
+
+.retrievalWeightedScore {
+  display: flex;
+  flex-direction: column;
+  padding: 0.25rem 0.5rem;
+  background: var(--color-accent-subtle);
+  border-radius: 4px;
+}
+
+.retrievalWeightedLabel {
+  font-size: 0.6875rem;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.retrievalWeightedValue {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--color-accent);
+}
+
+.retrievalCounts {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  text-align: right;
+}
+
+.empty {
+  padding: 2rem;
+  text-align: center;
+  color: var(--color-text-muted);
+}
+
+.error {
+  padding: 2rem;
+  text-align: center;
+  color: #c62828;
+}

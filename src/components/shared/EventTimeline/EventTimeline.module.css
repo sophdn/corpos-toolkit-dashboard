@@ -1,0 +1,234 @@
+.timeline {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+/*
+  Single-column descending layout (Phase 4 F3 follow-up). Replaces the
+  prior 2-column grid (140px meta + 1fr body) — that grid squeezed
+  long payload values into the right column. Now every event row
+  descends full-width: type chip → meta strip → payload → rationale.
+*/
+.entry {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-3) 0;
+  border-top: 1px solid var(--color-border);
+}
+
+.entry:first-child {
+  border-top: none;
+}
+
+.typeChip {
+  display: inline-block;
+  padding: 1px var(--space-2);
+  background: var(--color-neutral-subtle);
+  color: var(--color-text-primary);
+  border-radius: var(--radius-sm);
+  font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-xs);
+  align-self: flex-start;
+}
+
+/* Horizontal metadata strip directly under the type chip: time,
+   actor, span link separated by · dots. Wraps on narrow widths. */
+.metaStrip {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-2);
+  color: var(--color-text-muted);
+  font-size: var(--font-size-xs);
+}
+
+.metaSeparator {
+  color: var(--color-text-muted);
+}
+
+.actorRow {
+  display: inline-flex;
+  gap: var(--space-1);
+  align-items: baseline;
+  flex-wrap: wrap;
+}
+
+.actorKind {
+  font-weight: var(--font-weight-medium);
+}
+
+.actorID {
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-xs);
+}
+
+.rationale {
+  font-style: italic;
+  white-space: pre-wrap;
+  margin: 0;
+  padding: var(--space-2) var(--space-3);
+  background: var(--color-neutral-subtle);
+  border-left: 3px solid var(--color-border);
+  color: var(--color-text-primary);
+}
+
+.payload {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.payloadRow {
+  display: flex;
+  gap: var(--space-2);
+  font-size: var(--font-size-sm);
+}
+
+/* `prose` variant — label above as a small uppercase header, value
+   full-width below. Used for long-form fields (Summary, AuditDoc,
+   Problem, Output, Completion, Closure summary) where the inline
+   100px label + squished value column is unreadable. Matches the
+   drawerSection pattern at apps/dashboard/src/pages/AuditLedger/
+   AuditLedger.module.css for visual consistency. */
+.payloadRow.prose {
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.payloadRow.prose .payloadLabel {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  min-width: 0;
+}
+
+.payloadRow.prose .payloadValue {
+  font-family: var(--font-family);
+  font-size: var(--font-size-sm);
+  word-break: normal;
+  overflow-wrap: anywhere;
+}
+
+.payloadLabel {
+  color: var(--color-text-muted);
+  min-width: 100px;
+}
+
+.payloadValue {
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-xs);
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.payloadFallback {
+  margin: 0;
+  padding: var(--space-2);
+  background: var(--color-neutral-subtle);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-xs);
+  white-space: pre-wrap;
+  overflow-x: auto;
+}
+
+.spanLink {
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-xs);
+  color: var(--color-link);
+}
+
+.placeholder {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+  padding: var(--space-3) 0;
+}
+
+.empty {
+  color: var(--color-text-muted);
+  font-style: italic;
+  padding: var(--space-3) 0;
+}
+
+.error {
+  color: var(--color-negative);
+  padding: var(--space-3) 0;
+}
+
+.showMore {
+  align-self: flex-start;
+  padding: var(--space-1) var(--space-3);
+  background: transparent;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  color: var(--color-text-primary);
+  cursor: pointer;
+  font-size: var(--font-size-xs);
+  margin-top: var(--space-2);
+}
+
+.showMore:hover {
+  background: var(--color-neutral-subtle);
+}
+
+/* References-resolved suffix (RF3) — sibling to the QF3 "preceded by N
+   queries" extension. Renders only for BugResolved / TaskCompleted /
+   ChainClosed; absent state when no rows or no project_id on the event. */
+
+.refsResolvedSuffix {
+  margin-top: var(--space-1);
+}
+
+.refsResolvedToggle {
+  background: transparent;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: 2px var(--space-2);
+  font-size: var(--font-size-xs);
+  font-family: var(--font-family-mono);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+}
+
+.refsResolvedToggle:hover {
+  background: var(--color-neutral-subtle);
+  color: var(--color-text-primary);
+}
+
+.refsResolvedList {
+  margin: var(--space-1) 0 0 0;
+  padding: 0 0 0 var(--space-3);
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.refsResolvedRow {
+  font-size: var(--font-size-xs);
+}
+
+.refsResolvedLink {
+  display: flex;
+  gap: var(--space-2);
+  align-items: baseline;
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
+.refsResolvedLink:hover {
+  text-decoration: underline;
+}
+
+.refsResolvedShape,
+.refsResolvedTier {
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}

@@ -1,0 +1,84 @@
+.card {
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  background: var(--color-surface-raised);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.card:hover {
+  border-color: var(--color-accent);
+  background: var(--color-surface);
+}
+
+.selected {
+  border-color: var(--color-accent);
+  background: var(--color-accent-subtle);
+}
+
+.selected:hover {
+  background: var(--color-accent-subtle);
+}
+
+.title {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-primary);
+  line-height: var(--line-height-base);
+}
+
+.id {
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-secondary);
+  margin-right: var(--space-1);
+}
+
+.slug {
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  word-break: break-all;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.filed {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  margin-left: auto;
+}
+
+/* Project badge — first chip in the tag row, identifies the unified-DB
+   project_id. Visual matches the legacy BugIndex projectBadge style so
+   the refactor keeps the bug page byte-for-byte. */
+.projectBadge {
+  display: inline-block;
+  padding: 0 var(--space-2);
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-accent, #93c5fd);
+  background: var(--color-accent-subtle, rgba(59, 130, 246, 0.1));
+  border: 1px solid var(--color-accent, #3b82f6);
+  border-radius: var(--radius-sm);
+  white-space: nowrap;
+}
+
+.surfaceTag {
+  display: inline-block;
+  padding: 0 var(--space-1);
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  white-space: nowrap;
+}

@@ -1,0 +1,16 @@
+# Keep the image build context small + reproducible. The builder only needs
+# package.json/package-lock.json + the source tree; everything below is either
+# rebuilt inside the image, irrelevant to the build, or developer-local.
+node_modules/
+dist/
+.vite/
+test-results/
+playwright-report/
+coverage/
+.git/
+.env.local
+*.tsbuildinfo
+.gitea/
+.git-hooks/
+# NOTE: deploy/ is intentionally NOT ignored — the runtime stage COPYs
+# deploy/toolkit-dashboard/nginx.conf from the build context.

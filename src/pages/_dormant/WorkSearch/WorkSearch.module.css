@@ -1,0 +1,315 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  height: 100%;
+}
+
+/* Big search input at the top */
+.searchSection {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-raised);
+}
+
+.searchInput {
+  flex: 1;
+  padding: 0;
+  font-size: var(--font-size-base);
+  font-family: inherit;
+  border: none;
+  background: transparent;
+  color: var(--color-text-primary);
+  outline: none;
+}
+
+.searchInput::placeholder {
+  color: var(--color-text-muted);
+}
+
+/* Three-column results grid */
+.grid {
+  display: grid;
+  grid-template-columns: minmax(200px, 1fr) minmax(280px, 2fr) minmax(180px, 1.5fr);
+  gap: var(--space-4);
+  align-items: start;
+  flex: 1;
+}
+
+/* Result list items shared styles */
+.resultList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.resultItem {
+  padding: var(--space-2) var(--space-3);
+  border-bottom: 1px solid var(--color-border);
+  cursor: pointer;
+}
+
+.resultItem:hover {
+  background: var(--color-surface);
+}
+
+.resultItem:last-child {
+  border-bottom: none;
+}
+
+.resultItemSelected {
+  background: var(--color-accent-subtle);
+}
+
+.resultItemSelected:hover {
+  background: var(--color-accent-subtle);
+}
+
+/* Chain result item */
+.chainResultTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--space-2);
+}
+
+.chainResultSlug {
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  word-break: break-word;
+}
+
+.chainResultMeta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-1);
+}
+
+.chainResultProgress {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.chainResultStatus {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
+/* Task result item */
+.taskResultMeta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.taskResultSlug {
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-primary);
+}
+
+.taskResultChain {
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}
+
+.taskResultField {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
+.taskResultSnippet {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  line-height: var(--line-height-base);
+  word-break: break-word;
+  margin: var(--space-1) 0 0;
+}
+
+.taskResultHighlight {
+  background: var(--color-accent-subtle);
+  color: var(--color-accent);
+  border-radius: 2px;
+  padding: 0 1px;
+}
+
+/* Detail panel */
+.detailBody {
+  padding: var(--space-3) var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.detailTaskSlug {
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  word-break: break-word;
+}
+
+.detailMeta {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.detailMetaRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.detailMetaLabel {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  min-width: 48px;
+}
+
+.detailMetaValue {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-primary);
+  font-family: var(--font-family-mono);
+}
+
+.detailSnippetLabel {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.detailSnippet {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  line-height: var(--line-height-base);
+  word-break: break-word;
+  margin: 0;
+}
+
+.goBtn {
+  align-self: flex-start;
+  margin-top: var(--space-2);
+  padding: var(--space-1) var(--space-3);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  font-family: inherit;
+  border: 1px solid var(--color-accent);
+  border-radius: var(--radius-sm);
+  background: var(--color-accent-subtle);
+  color: var(--color-accent);
+  cursor: pointer;
+}
+
+.goBtn:hover {
+  background: var(--color-accent);
+  color: var(--color-surface-raised);
+}
+
+/* Shared: count strip (reused from ChainIndex) */
+.countStrip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.countChip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--space-1) var(--space-2);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  min-width: 48px;
+}
+
+.countLabel {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}
+
+.countValue {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+}
+
+.metaStrip {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}
+
+.emptyProseNote {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
+.proseSection {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.proseSectionTitle {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.proseSectionBody {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-primary);
+  line-height: var(--line-height-base);
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.placeholder {
+  margin: var(--space-3);
+  padding: var(--space-6) var(--space-4);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  text-align: center;
+  border: 1px dashed var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+.toggleGroup {
+  display: flex;
+  gap: var(--space-1);
+}
+
+.toggleBtn {
+  padding: var(--space-1) var(--space-3);
+  font-size: var(--font-size-xs);
+  font-family: inherit;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--color-text-primary);
+  cursor: pointer;
+}
+
+.toggleBtnActive {
+  background: var(--color-accent-subtle);
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+}

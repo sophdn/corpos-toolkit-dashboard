@@ -1,0 +1,19 @@
+.base {
+  display: inline-block;
+  padding: 1px var(--space-2);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+}
+
+/* Shape variants */
+.badge { border-radius: var(--radius-sm); }
+.chip  { border-radius: var(--radius-full); }
+
+/* Status colours — shared semantic tokens */
+/* stylelint-disable selector-class-pattern */
+.status--pending    { color: var(--color-neutral);  background: var(--color-neutral-subtle); }
+.status--active     { color: var(--color-positive); background: var(--color-positive-subtle); }
+.status--in-progress{ color: var(--color-positive); background: var(--color-positive-subtle); }
+.status--closed     { color: var(--color-negative); background: var(--color-negative-subtle); }
+.status--cancelled  { color: var(--color-negative); background: var(--color-negative-subtle); }
+.status--blocked    { color: var(--color-negative); background: var(--color-negative-subtle); }

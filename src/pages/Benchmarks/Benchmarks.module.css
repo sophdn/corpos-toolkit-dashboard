@@ -1,0 +1,275 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+/* ── Header ── */
+.header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex-shrink: 0;
+  flex-wrap: wrap;
+}
+
+.title {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.subtitle {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  margin-left: var(--space-2);
+}
+
+/* ── Top-of-page model filter ── */
+.modelFilter {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-1) var(--space-2);
+  flex-shrink: 0;
+  padding: var(--space-1) 0;
+}
+
+.modelFilterLabel {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  margin-right: var(--space-1);
+}
+
+.modelFilterPill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: var(--font-size-xs);
+  font-family: inherit;
+  color: var(--color-text-primary);
+  background: var(--color-surface-raised);
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  padding: 2px var(--space-2);
+  cursor: pointer;
+}
+
+.modelFilterPillMuted {
+  color: var(--color-text-muted);
+  background: transparent;
+  text-decoration: line-through;
+}
+
+/* ── Card grid ──
+   Two-column grid; rows auto-size to the tallest card in that row
+   (CSS Grid default). Each card stretches to fill its grid cell so
+   neighbours align bottoms. Legends wrap freely; the card grows to
+   accommodate, and the row grows with it.
+   ────────────────────────────────────────────────────────────── */
+/* ── Deferred / rejected ports list ── */
+.deferredSection {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  border-top: 1px solid var(--color-border);
+  padding-top: var(--space-3);
+  margin-top: var(--space-2);
+}
+
+.deferredList {
+  list-style: none;
+  padding: 0;
+  margin: var(--space-2) 0 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.deferredItem {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: var(--space-2);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm, 4px);
+  background: var(--color-surface-raised);
+}
+
+.deferredItemHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--space-2);
+}
+
+.deferredItemNote {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-secondary, var(--color-text-primary));
+}
+
+.deferredItemRetrigger {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: var(--space-3);
+  align-items: stretch;
+}
+
+@media (max-width: 800px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  background: var(--color-surface-raised);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-3);
+  gap: var(--space-2);
+  min-height: 360px;
+}
+
+.cardHeader {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-2);
+  flex-shrink: 0;
+}
+
+.cardTitle {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.cardSubtitle {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}
+
+.radarWrap {
+  /* The radar fills whatever vertical space the card has after the
+     header and legend take theirs. Min-height keeps the radar
+     readable on small screens. */
+  flex: 1 1 auto;
+  min-height: 220px;
+}
+
+.cardLegend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-2);
+  padding-top: var(--space-1);
+  border-top: 1px solid var(--color-border);
+  /* Legend dictates its own height; never collapses below content. */
+  flex-shrink: 0;
+}
+
+.legendItem {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: var(--font-size-xs);
+  color: var(--color-text-primary);
+  font-family: inherit;
+  /* Informational-only — no click; the global model filter at the
+     top of the page is the single source of truth for visibility. */
+}
+
+.legendItemMuted {
+  color: var(--color-text-muted);
+  opacity: 0.5;
+}
+
+.legendSwatch {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  display: inline-block;
+}
+
+.cardEmpty {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  font-style: italic;
+  text-align: center;
+  padding: var(--space-3);
+}
+
+.verdictHist {
+  display: grid;
+  grid-template-columns: minmax(80px, max-content) 1fr minmax(64px, max-content);
+  column-gap: var(--space-2);
+  row-gap: var(--space-1);
+  align-items: center;
+  padding-top: var(--space-1);
+  border-top: 1px solid var(--color-border);
+  flex-shrink: 0;
+  font-size: var(--font-size-xs);
+  color: var(--color-text-primary);
+}
+
+.verdictRow {
+  display: contents;
+}
+
+.verdictLabel {
+  font-family: var(--font-family-mono, monospace);
+  color: var(--color-text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.verdictBar {
+  height: 6px;
+  background: var(--color-surface-recessed, var(--color-border));
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.verdictBarFill {
+  height: 100%;
+  background: var(--color-accent, var(--color-text-primary));
+  border-radius: 3px;
+  transition: width 120ms ease-out;
+}
+
+.verdictCount {
+  font-variant-numeric: tabular-nums;
+  color: var(--color-text-muted);
+  text-align: right;
+}
+
+/* ── State messages ── */
+.state {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  padding: var(--space-6) 0;
+  text-align: center;
+}
+
+/* ── Footer methodology link ── */
+.footer {
+  flex-shrink: 0;
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  padding-top: var(--space-2);
+  border-top: 1px solid var(--color-border);
+}

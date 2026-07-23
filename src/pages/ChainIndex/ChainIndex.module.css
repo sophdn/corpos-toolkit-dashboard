@@ -1,0 +1,386 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  height: 100%;
+}
+
+/* Chain summary header */
+.summaryHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface-raised);
+}
+
+.summaryItem {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-1);
+}
+
+.summaryLabel {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}
+
+.summaryValue {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+}
+
+/* Three-column grid */
+.grid {
+  display: grid;
+  grid-template-columns: minmax(200px, 1fr) minmax(280px, 2fr) minmax(180px, 1.5fr);
+  gap: var(--space-4);
+  align-items: start;
+  flex: 1;
+}
+
+/* Panel shell is now provided by shared/Panel.tsx */
+
+.panelTitle {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  word-break: break-word;
+}
+
+.panelNote {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}
+
+.panelError {
+  font-size: var(--font-size-xs);
+  color: var(--color-danger);
+}
+
+.placeholder {
+  margin: var(--space-3);
+  padding: var(--space-6) var(--space-4);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  text-align: center;
+  border: 1px dashed var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+.emptyText {
+  padding: var(--space-6) var(--space-4);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  text-align: center;
+}
+
+/* Chain list (left panel) */
+.panelSearchRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  width: 100%;
+}
+
+.searchInput {
+  width: 100%;
+  padding: 0;
+  font-size: var(--font-size-xs);
+  font-family: inherit;
+  border: none;
+  background: transparent;
+  color: var(--color-text-primary);
+  outline: none;
+}
+
+.searchInput::placeholder {
+  color: var(--color-text-muted);
+}
+
+.chainList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.chainRow {
+  padding: var(--space-2) var(--space-3);
+  border-bottom: 1px solid var(--color-border);
+  cursor: pointer;
+}
+
+.chainRow:hover {
+  background: var(--color-surface);
+}
+
+.chainRow:last-child {
+  border-bottom: none;
+}
+
+.chainRowSelected {
+  background: var(--color-accent-subtle);
+  color: var(--color-accent);
+}
+
+.chainRowSelected:hover {
+  background: var(--color-accent-subtle);
+}
+
+.chainRowTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--space-2);
+}
+
+.rowId {
+  color: var(--color-text-secondary);
+  font-weight: var(--font-weight-medium);
+  margin-right: var(--space-1);
+}
+
+.chainSlug {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  font-family: var(--font-family-mono);
+  word-break: break-word;
+}
+
+.chainProgress {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.chainRowMeta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-1);
+}
+
+.chainUpdated {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}
+
+/* Progress chips and status badges now rendered by shared/StatusBadge.tsx */
+
+/* Task table (middle panel) */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--font-size-sm);
+}
+
+.table th {
+  text-align: left;
+  padding: var(--space-1) var(--space-3);
+  color: var(--color-text-muted);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.table td {
+  padding: var(--space-2) var(--space-3);
+  border-bottom: 1px solid var(--color-border);
+  color: var(--color-text-primary);
+  vertical-align: middle;
+}
+
+.table tbody tr {
+  cursor: pointer;
+}
+
+.table tbody tr:hover {
+  background: var(--color-surface);
+}
+
+.taskRowSelected {
+  background: var(--color-accent-subtle) !important;
+}
+
+.taskRowSelected td {
+  color: var(--color-accent);
+}
+
+.taskRowSelected .taskExcerpt {
+  color: var(--color-accent);
+}
+
+.table tr:last-child td {
+  border-bottom: none;
+}
+
+.taskSlug {
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+}
+
+.taskExcerpt {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  white-space: normal;
+  word-break: break-word;
+}
+
+
+/* Right panel toggle */
+.toggleGroup {
+  display: flex;
+  gap: var(--space-1);
+}
+
+.toggleBtn {
+  padding: var(--space-1) var(--space-3);
+  font-size: var(--font-size-xs);
+  font-family: inherit;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--color-text-primary);
+  cursor: pointer;
+}
+
+.toggleBtnActive {
+  background: var(--color-accent-subtle);
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+/* Right panel detail content */
+.detailBody {
+  padding: var(--space-3) var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.countStrip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.countChip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--space-1) var(--space-2);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  min-width: 48px;
+}
+
+.countLabel {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}
+
+.countValue {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+}
+
+.metaStrip {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}
+
+.emptyProseNote {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
+.proseSection {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.proseSectionTitle {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.proseSectionBody {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-primary);
+  line-height: var(--line-height-base);
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* Content search results (middle panel) */
+.searchResultList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.searchResultItem {
+  padding: var(--space-2) var(--space-3);
+  border-bottom: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.searchResultItem:last-child {
+  border-bottom: none;
+}
+
+.searchResultMeta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.searchResultTask {
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-primary);
+}
+
+.searchResultChain {
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}
+
+.searchResultField {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
+.searchResultSnippet {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  line-height: var(--line-height-base);
+  word-break: break-word;
+  margin: 0;
+}
+
+.searchResultHighlight {
+  background: var(--color-accent-subtle);
+  color: var(--color-accent);
+  border-radius: 2px;
+  padding: 0 1px;
+  font-style: normal;
+}

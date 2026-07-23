@@ -1,0 +1,41 @@
+# tygo config — Go→TS codegen for the toolkit↔frontend API-type contract.
+#
+# src/api/types.gen.ts is the GENERATED TS mirror of the toolkit's Go
+# observe-HTTP response structs. The Go structs are the single source of
+# truth; this config + scripts/gen-types.sh + the precommit freshness gate
+# are the post-split home of the codegen that used to live in the
+# mcp-servers monorepo's Go gate (bug
+# gots-types-contract-gate-has-no-home-after-dashboard-split).
+#
+# tygo runs INSIDE the toolkit's Go module (so the `toolkit/...` import path
+# resolves), reading from a sibling clone of the toolkit repo — see
+# scripts/gen-types.sh, which invokes `go run` there and substitutes the
+# absolute output path for the __OUTPUT_PATH__ placeholder below. Don't run
+# tygo against this file directly; use scripts/gen-types.sh.
+
+packages:
+  - path: "toolkit/internal/observehttp"
+    # Placeholder — scripts/gen-types.sh rewrites this to the absolute path
+    # of src/api/types.gen.ts (tygo has no output CLI flag and resolves
+    # output_path relative to its CWD, which is the toolkit module dir).
+    output_path: "__OUTPUT_PATH__"
+    include_files:
+      - "arcreview_corpus.go"
+      - "benchmarks_aggregate.go"
+      - "benchmarks.go"
+      - "bugs.go"
+      - "chains.go"
+      - "tasks.go"
+      - "suggestions.go"
+      - "memory_substrate.go"
+    type_mappings:
+      "time.Time": "string"
+    frontmatter: |
+      // GENERATED FILE — DO NOT EDIT BY HAND.
+      // Source: the toolkit's go/internal/observehttp response structs
+      //   (arcreview_corpus, benchmarks, benchmarks_aggregate, bugs,
+      //    chains, tasks, suggestions, memory_substrate).
+      // Regenerate: scripts/gen-types.sh  (reads a sibling toolkit clone;
+      //   set TOOLKIT_GO_DIR to override its location). The precommit gate
+      //   runs `scripts/gen-types.sh --check` and fails if this file has
+      //   drifted from the Go contract.

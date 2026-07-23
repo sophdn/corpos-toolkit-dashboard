@@ -1,0 +1,306 @@
+/* Assays page-level styles. Layout shell + filter row + detail panel
+ * chrome are copied from BugIndex.module.css; the score-grid .table
+ * rules are copied from ModelRanking.module.css. Semantic status tokens
+ * drive the run status badge and the per-verdict grid cells. */
+
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  height: 100%;
+  min-height: 0;
+}
+
+/* Filter row */
+.filterRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+  flex-shrink: 0;
+}
+
+.filterSelect {
+  padding: var(--space-1) var(--space-2);
+  font-size: var(--font-size-xs);
+  font-family: inherit;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface-raised);
+  color: var(--color-text-primary);
+  cursor: pointer;
+}
+
+.filterInput {
+  padding: var(--space-1) var(--space-2);
+  font-size: var(--font-size-xs);
+  font-family: inherit;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface-raised);
+  color: var(--color-text-primary);
+  min-width: 200px;
+  outline: none;
+}
+
+.filterInput::placeholder {
+  color: var(--color-text-muted);
+}
+
+/* Two-column content area — both columns fill height and scroll internally */
+.contentArea {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 420px;
+  gap: var(--space-4);
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* Left pane — scrollable card list */
+.listPane {
+  overflow-y: auto;
+  min-height: 0;
+}
+
+.recordList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+/* Model chip — assay-specific lead chip on each run card. */
+.modelChip {
+  display: inline-block;
+  padding: 0 var(--space-2);
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  border-radius: var(--radius-sm);
+  white-space: nowrap;
+  background: var(--color-surface);
+  color: var(--color-text-muted);
+  border: 1px solid var(--color-border);
+  max-width: 180px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.emptyState {
+  padding: var(--space-6) var(--space-4);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  text-align: center;
+  border: 1px dashed var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+/* Right pane — detail panel as a real column */
+.detailPane {
+  overflow-y: auto;
+  min-height: 0;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-raised);
+}
+
+.detailHeader {
+  padding: var(--space-2) var(--space-3);
+  border-bottom: 1px solid var(--color-border);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  position: sticky;
+  top: 0;
+  background: var(--color-surface-raised);
+  z-index: 1;
+}
+
+.detailPlaceholder {
+  margin: var(--space-3);
+  padding: var(--space-6) var(--space-4);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  text-align: center;
+  border: 1px dashed var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+/* Detail body content */
+.detailBody {
+  padding: var(--space-3) var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.detailSlug {
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-muted);
+  word-break: break-all;
+}
+
+.detailTitle {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-primary);
+  line-height: var(--line-height-base);
+  word-break: break-word;
+  margin: 0;
+}
+
+.detailMeta {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.detailMetaRow {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.detailMetaLabel {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  min-width: 92px;
+}
+
+.detailMetaValue {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-primary);
+}
+
+.detailMetaMono {
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-xs);
+  color: var(--color-text-primary);
+  word-break: break-all;
+}
+
+.detailSection {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.detailSectionLabel {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.detailSectionBody {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-primary);
+  line-height: var(--line-height-base);
+  word-break: break-word;
+  margin: 0;
+}
+
+/* Run status badge — colored by semantic status token. */
+/* stylelint-disable selector-class-pattern */
+.statusBadge {
+  display: inline-block;
+  padding: 1px var(--space-2);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  border-radius: var(--radius-sm);
+}
+
+.status--positive {
+  color: var(--color-positive);
+  background: var(--color-positive-subtle);
+}
+
+.status--neutral {
+  color: var(--color-neutral);
+  background: var(--color-neutral-subtle);
+}
+
+.status--negative {
+  color: var(--color-negative);
+  background: var(--color-negative-subtle);
+}
+
+/* Run error block — shown when a failed run has no scores. */
+.errorBlock {
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-xs);
+  color: var(--color-negative);
+  background: var(--color-negative-subtle);
+  border: 1px solid color-mix(in srgb, var(--color-negative) 30%, transparent);
+  border-radius: var(--radius-sm);
+  padding: var(--space-2);
+  word-break: break-word;
+  white-space: pre-wrap;
+  margin: 0;
+}
+
+/* Score grid — copied from ModelRanking.module.css .table rules. */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+
+.table th {
+  text-align: left;
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid var(--color-border);
+  font-weight: 600;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+}
+
+.table td {
+  padding: 0.625rem 0.75rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.conditionCell {
+  font-family: var(--font-family-mono);
+  font-weight: 600;
+}
+
+/* Verdict cell chip — abbreviated verdict colored by semantic token. */
+.verdictChip {
+  display: inline-block;
+  padding: 0 var(--space-1);
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  border-radius: var(--radius-sm);
+}
+
+.verdict--positive {
+  color: var(--color-positive);
+  background: var(--color-positive-subtle);
+}
+
+.verdict--neutral {
+  color: var(--color-neutral);
+  background: var(--color-neutral-subtle);
+}
+
+.verdict--negative {
+  color: var(--color-negative);
+  background: var(--color-negative-subtle);
+}
+
+.verdictEmpty {
+  color: var(--color-text-muted);
+}

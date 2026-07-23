@@ -1,0 +1,142 @@
+# sophdn/toolkit-dashboard CI — runs in Gitea Actions on every push and
+# pull-request.
+#
+# `precommit` invokes the unified pre-commit gate (`scripts/precommit.sh`),
+# the exact script the local `.git/hooks/pre-commit` symlink runs, so the
+# gate set has one owner and CI can never drift from local enforcement.
+# Stages: CSS-token-drift → eslint → tsc --noEmit (app + config projects)
+# → vitest.
+#
+# `e2e` runs the Playwright journey suite against `dev-mock.mjs` — no real
+# toolkit-server, no VITE_API_BASE_URL. That unset env is the point: the
+# app's own default API base (src/lib/http.ts, and the SSE hooks) must
+# agree with the port dev-mock listens on, so a repeat of the :3000→:3001
+# half-migration turns this job red. The suite previously lived outside CI
+# and quietly rotted to 59/125 red for exactly that reason (bug
+# `dashboard-port-3000-defaults-leave-e2e-red-and-sse-split-brained`).
+#
+# This is a frontend (React/Vite) repo split out of the mcp-servers
+# monorepo (chain auto-startup-dev-services T3). The toolkit↔frontend
+# boundary is the HTTP API contract, so this workflow installs no Go
+# toolchain — the gate's one Go-touching stage (the src/api/types.gen.ts
+# freshness check) detects the missing toolkit source + Go here and
+# skips-with-warning. Dev-machine commits enforce it; CI-side enforcement
+# that checks out both repos is deferred to finish-sophdn-repo-split T8.
+#
+# Toolchain notes:
+#   - The homelab Gitea Actions runner is registered with
+#     `ubuntu-latest:docker://node:22-bookworm` (shared with the toolkit,
+#     seed-packet, and dm-toolkit repos), so node + npm ship in the image;
+#     actions/setup-node pins the version and turns on npm caching.
+#   - The act_runner mounts the job workspace owned by a different uid than
+#     the in-container user, so git's dubious-ownership guard aborts the
+#     first git command. scripts/precommit.sh opens with
+#     `git rev-parse --show-toplevel`, so mark the tree safe before it runs.
+
+name: ci
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  precommit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: trust the checkout (git safe.directory)
+        run: git config --global --add safe.directory '*'
+
+      - name: install node toolchain
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: package-lock.json
+
+      - name: install dependencies (locked)
+        run: npm ci
+
+      - name: run unified pre-commit gate
+        run: ./scripts/precommit.sh
+
+  # ── e2e journey suite ──────────────────────────────────────────────────────
+  # Deliberately runs with VITE_API_BASE_URL unset (.env.local is gitignored,
+  # so CI never has one): the dashboard falls back to its compiled-in default
+  # API base, dev-mock listens on that same default, and the specs' route
+  # mocks scope to it via PLAYWRIGHT_API_HOST's default. If any of those three
+  # drift apart, this job fails — which is the regression this job exists for.
+  e2e:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: trust the checkout (git safe.directory)
+        run: git config --global --add safe.directory '*'
+
+      - name: install node toolchain
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: package-lock.json
+
+      - name: install dependencies (locked)
+        run: npm ci
+
+      - name: install chromium + system deps
+        run: npx playwright install --with-deps chromium
+
+      # dev-mock and the suite share one step so the mock's lifetime is
+      # bounded by the run: the EXIT trap reaps it whether the suite passes,
+      # fails, or the job is cancelled. Playwright's own webServer config
+      # starts Vite on :5180 and (CI=true) refuses to reuse a stray server.
+      - name: run playwright e2e against dev-mock
+        run: |
+          set -euo pipefail
+          node dev-mock.mjs --dummy &
+          MOCK_PID=$!
+          trap 'kill "$MOCK_PID" 2>/dev/null || true' EXIT
+          for _ in $(seq 1 30); do
+            if curl -sf -o /dev/null http://localhost:3001/chains; then
+              echo "dev-mock up"
+              break
+            fi
+            sleep 1
+          done
+          curl -sf -o /dev/null http://localhost:3001/chains \
+            || { echo "dev-mock never came up on :3001"; exit 1; }
+          npx playwright test
+
+  # ── mirror-publish (chain 438) ─────────────────────────────────────────────
+  # Publish a scrubbed, squashed snapshot of main to the public GitHub mirror on
+  # every green push to main. Gated on the green precommit AND e2e jobs, and
+  # main-only, so a red run or a PR never publishes — the mirror is the portfolio
+  # face, so a red journey suite must not reach it. Content genericization is Option B: the
+  # private repo keeps real infra strings; publish-public.sh applies
+  # .publish-scrub-map and fail-closed-verifies against .pii-denylist before the
+  # tree is committed.
+  mirror-publish:
+    needs: [precommit, e2e]
+    if: gitea.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: trust the checkout (git safe.directory)
+        run: git config --global --add safe.directory '*'
+
+      - name: Scrub, secret-scan, force-push public mirror
+        env:
+          MIRROR_TOKEN: ${{ secrets.MIRROR_GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          OUT="$(mktemp -d)/mirror"
+          bash scripts/publish-public.sh --repo . --out "$OUT"   # scrub HEAD → squashed tree
+          bash scripts/secret-scan-tree.sh "$OUT"                # fail-closed: abort if any secret
+          git -C "$OUT" push --force \
+            "https://x-access-token:${MIRROR_TOKEN}@github.com/sophdn/corpos-toolkit-dashboard.git" \
+            HEAD:main

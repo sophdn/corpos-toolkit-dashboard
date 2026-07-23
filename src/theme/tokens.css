@@ -1,0 +1,118 @@
+/* Design tokens — CSS custom properties only, no domain-specific values */
+
+:root,
+[data-theme="light"] {
+  /* color */
+  --color-bg: #ffffff;
+  --color-surface: #f7f7f8;
+  --color-surface-raised: #efefef;
+  --color-border: #e2e2e2;
+  --color-border-strong: #c8c8c8;
+  --color-text-primary: #111111;
+  --color-text-secondary: #555555;
+  --color-text-muted: #888888;
+  --color-accent: #5a67d8;
+  --color-accent-hover: #4c51bf;
+  --color-accent-subtle: #eef0fb;
+  --color-danger: #dc2626;
+  --color-danger-subtle: #fef2f2;
+  --color-success: #16a34a;
+  --color-success-subtle: #f0fdf4;
+  --color-warning: #d97706;
+  --color-warning-subtle: #fffbeb;
+
+  /* semantic status colors — use these for any status/state badge or chip */
+  --color-positive: var(--color-success);
+  --color-positive-subtle: var(--color-success-subtle);
+  --color-neutral: var(--color-accent);
+  --color-neutral-subtle: var(--color-accent-subtle);
+  --color-negative: var(--color-danger);
+  --color-negative-subtle: var(--color-danger-subtle);
+
+  /* spacing — 4px base scale */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+
+  /* typography */
+  --font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-family-mono: ui-monospace, "Cascadia Code", "Fira Code", monospace;
+  --font-size-xs: 11px;
+  --font-size-sm: 13px;
+  --font-size-base: 15px;
+  --font-size-lg: 17px;
+  --font-size-xl: 20px;
+  --font-size-2xl: 24px;
+  --font-size-3xl: 30px;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --line-height-tight: 1.25;
+  --line-height-snug: 1.375;
+  --line-height-base: 1.5;
+
+  /* radius */
+  --radius-sm: 3px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+  --radius-2xl: 16px;
+  --radius-full: 9999px;
+
+  /* shadow */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.08), 0 2px 4px -2px rgb(0 0 0 / 0.06);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.08), 0 4px 6px -4px rgb(0 0 0 / 0.05);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.08), 0 8px 10px -6px rgb(0 0 0 / 0.05);
+
+  /* layout */
+  --sidebar-width: 240px;
+  --header-height: 48px;
+}
+
+[data-theme="dark"] {
+  /* color */
+  --color-bg: #0f0f10;
+  --color-surface: #1a1a1d;
+  --color-surface-raised: #242427;
+  --color-border: #2e2e33;
+  --color-border-strong: #46464e;
+  --color-text-primary: #efefef;
+  --color-text-secondary: #a0a0aa;
+  --color-text-muted: #656570;
+  --color-accent: #818cf8;
+  --color-accent-hover: #6b74f0;
+  --color-accent-subtle: #1e2050;
+  --color-danger: #f87171;
+  --color-danger-subtle: #200f0f;
+  --color-success: #4ade80;
+  --color-success-subtle: #0c1f12;
+  --color-warning: #fbbf24;
+  --color-warning-subtle: #1f1908;
+}
+
+/* Base reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  background-color: var(--color-bg);
+  color: var(--color-text-primary);
+  line-height: var(--line-height-base);
+  -webkit-font-smoothing: antialiased;
+}

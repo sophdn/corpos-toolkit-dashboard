@@ -1,0 +1,33 @@
+# Quadlet container unit — the containerized toolkit-dashboard (static SPA over
+# nginx). Rootless, systemd-user-managed. Serves on host :8082 (nginx listens on
+# 8080 inside as non-root).
+#
+# image-lags-HEAD (the deliberate stability boundary, mirrors the toolkit unit):
+# this runs localhost/toolkit-dashboard:dev AS BUILT. Editing source does NOT
+# change the running container — and because VITE_API_BASE_URL is baked at build
+# time, retargeting the API also requires a rebuild. Advance it explicitly with:
+#     scripts/build-image.sh && systemctl --user restart toolkit-dashboard
+#
+# The dashboard talks to the toolkit's HTTP API from the BROWSER, cross-origin
+# (VITE_API_BASE_URL, baked). It joins corpos.network for topology consistency
+# with the rest of the stack, but the static server makes no server-side calls,
+# so it has no container-DNS dependency on the toolkit — it is independently
+# start/stop-able. After= gives a sensible boot order without a hard coupling.
+[Unit]
+Description=toolkit-dashboard (containerized) — static observe SPA on :8082
+Wants=network-online.target
+After=network-online.target toolkit-server.service
+
+[Container]
+ContainerName=toolkit-dashboard
+Image=localhost/toolkit-dashboard:dev
+Network=corpos.network
+PublishPort=8082:8080
+
+[Service]
+# A crash should bring it back; the static server holds no state.
+Restart=on-failure
+TimeoutStartSec=60
+
+[Install]
+WantedBy=default.target

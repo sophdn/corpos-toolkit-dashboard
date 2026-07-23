@@ -1,0 +1,216 @@
+{
+    "total_active_pointers": 1768,
+    "by_source_type": [
+        {
+            "source_type": "task",
+            "count": 1335
+        },
+        {
+            "source_type": "vault",
+            "count": 121
+        },
+        {
+            "source_type": "chain",
+            "count": 111
+        },
+        {
+            "source_type": "library",
+            "count": 92
+        },
+        {
+            "source_type": "bug",
+            "count": 77
+        },
+        {
+            "source_type": "kiwix_reference",
+            "count": 32
+        }
+    ],
+    "pending_curation_candidates": 447,
+    "top_queried": [
+        {
+            "id": 314,
+            "source_type": "task",
+            "source_ref": "seed-packet::wire-vault-search-observability",
+            "question": "Make the vault-pull rate visible. Two pieces:\n\n(1) Per-invocation log: every vault_search call writes a row to the toolkit-server session journal (or a sibling table) with `{session_id, timestamp, que",
+            "usage_count": 6
+        },
+        {
+            "id": 1035,
+            "source_type": "task",
+            "source_ref": "mcp-servers::knowledge-telemetry-log-on-err",
+            "question": "crates/toolkit-server/src/dispatch/knowledge.rs:367-383 wraps record_vault_search_invocation in `let _ = ...await` while a comment claims 'Write failure is logged but never blocks the response'. `let",
+            "usage_count": 6
+        },
+        {
+            "id": 246,
+            "source_type": "task",
+            "source_ref": "seed-packet::extract-two-pass-orchestration-skeleton",
+            "question": "Catalog entry A7. `vault_search` and `kiwix_search_with_qwen_rerank` in `mcp-servers/crates/toolkit-server/src/dispatch.rs` duplicate the same two-pass orchestration skeleton: compose pass-1 prompt \u2192",
+            "usage_count": 5
+        },
+        {
+            "id": 262,
+            "source_type": "task",
+            "source_ref": "seed-packet::add-kiwix-offload-invocations-journal-table",
+            "question": "Add a `kiwix_offload_invocations` journal table to `mcp-servers/data/toolkit.db` plus a shared-db insert/read API. Mirrors the deployed `vault_search_invocations` pattern in `mcp-servers/crates/shared",
+            "usage_count": 5
+        },
+        {
+            "id": 309,
+            "source_type": "task",
+            "source_ref": "seed-packet::implement-chosen-precision-sharpening-approach",
+            "question": "Land the chosen approach from `decide-two-pass-rerank-vs-fastembed-prefilter` behind the existing `mcp__toolkit-server__knowledge.vault_search` MCP surface. The dispatch arm rebinds; the input/output",
+            "usage_count": 4
+        }
+    ],
+    "recently_added": [
+        {
+            "id": 1768,
+            "source_type": "bug",
+            "source_ref": "mcp-servers::knowledge-shared-promote-candidate-test-flaky-in-parallel",
+            "question": "knowledge-shared promote_candidate_creates_pointer_and_marks_promoted test is flaky in parallel runs \u2014 passes serially with --test-threads=1",
+            "created_at": "2026-05-17 21:24:56"
+        },
+        {
+            "id": 1767,
+            "source_type": "task",
+            "source_ref": "mcp-servers::curation-go-migration::verify-knowledge-dashboard-post-migration",
+            "question": "Verify the Knowledge index page works as expected after the migration lands. Pairs with the baseline task (knowledge-dashboard-baseline-behavior-snapshot) \u2014 the baseline locked the contract; this task",
+            "created_at": "2026-05-17 20:56:14"
+        },
+        {
+            "id": 1766,
+            "source_type": "task",
+            "source_ref": "mcp-servers::curation-go-migration::knowledge-dashboard-baseline-behavior-snapshot",
+            "question": "Lock in the current behavior of the dashboard's Knowledge index page BEFORE any chain code touches the DB layer or curation data. Without an enforceable baseline, 'still works as expected' (the user's",
+            "created_at": "2026-05-17 20:55:49"
+        },
+        {
+            "id": 1765,
+            "source_type": "bug",
+            "source_ref": "mcp-servers::task-tools-recency-nag-fires-despite-active-taskupdate-use",
+            "question": "TaskCreate/TaskUpdate 'haven't been used recently' nag fires repeatedly even when TaskUpdate is actively driving the session",
+            "created_at": "2026-05-17 20:50:22"
+        },
+        {
+            "id": 1764,
+            "source_type": "bug",
+            "source_ref": "mcp-servers::bug-resolve-resolution-kind-required-but-not-in-actions-discovery",
+            "question": "bug_resolve requires resolution_kind but the action discovery description doesn't surface it; agents hit a 5-of-5 retry loop on first use",
+            "created_at": "2026-05-17 20:50:10"
+        },
+        {
+            "id": 1763,
+            "source_type": "bug",
+            "source_ref": "mcp-servers::precommit-gofmt-restage-overrides-git-add-p-partial-staging",
+            "question": "git add -p partial-stage of one hunk gets swept to full-file by precommit gofmt re-stage; commit lands changes the author didn't intend to ship",
+            "created_at": "2026-05-17 20:49:56"
+        },
+        {
+            "id": 1762,
+            "source_type": "task",
+            "source_ref": "mcp-servers::curation-go-migration::end-to-end-backlog-drain-and-triage",
+            "question": "Validate the chain end-to-end by draining the live backlog. As of chain creation: 447 pending candidates (391 task_handoff unscored + 56 vault refs at quality_score=0.5).\n\nRun the new Go binaries / MC",
+            "created_at": "2026-05-17 20:32:33"
+        },
+        {
+            "id": 1761,
+            "source_type": "task",
+            "source_ref": "mcp-servers::curation-go-migration::retire-rust-curation-binaries",
+            "question": "Delete the Rust curation binaries and their references once the Go equivalents have parity:\n\n- git rm benchmarks/src/bin/knowledge_curate.rs (parity by T7)\n- git rm benchmarks/src/bin/knowledge_seeder",
+            "created_at": "2026-05-17 20:32:09"
+        },
+        {
+            "id": 1760,
+            "source_type": "task",
+            "source_ref": "mcp-servers::curation-go-migration::port-inference-health-diagnostic-to-go",
+            "question": "Port benchmarks/src/bin/inference_health.rs to Go (or replace with an admin MCP action). The diagnostic exists because the Rust binary's silent qwen-unreachable failure cost ~20 minutes of triage; thi",
+            "created_at": "2026-05-17 20:31:44"
+        },
+        {
+            "id": 1759,
+            "source_type": "task",
+            "source_ref": "mcp-servers::curation-go-migration::replacement-seeder-named-vault-only-with-expires-at",
+            "question": "Replace, don't port, the session_mining seeder. The Rust knowledge_seeder.rs has multiple insertion paths; today's triage proved that 502 of 558 session_mining candidates it produced were noise (one-t",
+            "created_at": "2026-05-17 20:31:20"
+        },
+        {
+            "id": 1758,
+            "source_type": "task",
+            "source_ref": "mcp-servers::curation-go-migration::mcp-curation-surface-list-read-promote-reject-bulk",
+            "question": "Add curation actions to the mcp__toolkit-server__knowledge meta-tool so humans and agents can work the curation backlog through the same tool surface as everything else. Five actions:\n\n- curation_list",
+            "created_at": "2026-05-17 20:30:50"
+        },
+        {
+            "id": 1757,
+            "source_type": "task",
+            "source_ref": "mcp-servers::curation-go-migration::port-discovery-passes-primary-and-secondary",
+            "question": "Port the two existing discovery passes from benchmarks/src/bin/knowledge_curate.rs:\n\nPrimary pass: mines grounding_events WHERE results_count=0 AND next_turn_has_output=1. Reconstructs query from sess",
+            "created_at": "2026-05-17 20:30:18"
+        },
+        {
+            "id": 1756,
+            "source_type": "task",
+            "source_ref": "mcp-servers::curation-go-migration::rescore-pass-with-qwen-unreachable-abort",
+            "question": "First production pass on top of the new architecture. Walks pending candidates with quality_score IS NULL, builds source material per origin, runs Scorer.Extract + Scorer.Score, writes back via Update",
+            "created_at": "2026-05-17 20:29:44"
+        },
+        {
+            "id": 1755,
+            "source_type": "task",
+            "source_ref": "mcp-servers::curation-go-migration::port-curation-candidate-db-layer",
+            "question": "Port the curation-candidate DB layer from crates/knowledge-shared/src/pointers.rs into go/internal/curation/store/ (per T1 layout). Functions needed:\n\n- ListPending(ctx, pool, filters{project?, origin",
+            "created_at": "2026-05-17 20:29:12"
+        },
+        {
+            "id": 1754,
+            "source_type": "task",
+            "source_ref": "mcp-servers::curation-go-migration::define-scorer-and-source-material-builder-interfaces",
+            "question": "Define the two interfaces that the chain's architecture rests on, plus initial implementations:\n\nScorer interface:\n  type Scorer interface {\n      Extract(ctx, sourceType, sourceRef, sourceMaterial st",
+            "created_at": "2026-05-17 20:28:49"
+        },
+        {
+            "id": 1753,
+            "source_type": "task",
+            "source_ref": "mcp-servers::curation-go-migration::port-scoring-contract-prompts-parsers-and-qwen-helpers",
+            "question": "Port the scoring contract from benchmarks/src/bin/knowledge_curate.rs into go/internal/curation/scoring/ (path per T1's decision). Concretely:\n\n- EXTRACTION_SYSTEM and SCORING_SYSTEM prompt constants",
+            "created_at": "2026-05-17 20:28:24"
+        },
+        {
+            "id": 1752,
+            "source_type": "task",
+            "source_ref": "mcp-servers::curation-go-migration::audit-go-llamacpp-parity-vs-rust-inference-clients",
+            "question": "Before T3 ports the scoring contract on top of Go's llamacpp client, audit go/internal/inference/llamacpp/ for parity gaps vs inference-clients/src/router.rs (Rust). The rescore pass needs at minimum:",
+            "created_at": "2026-05-17 20:27:51"
+        },
+        {
+            "id": 1751,
+            "source_type": "task",
+            "source_ref": "mcp-servers::curation-go-migration::design-doc-module-and-interface-shapes",
+            "question": "Write the design doc that gates the rest of this chain. Decisions needed before any Go code lands:\n\n1. Module layout. Proposed: `go/internal/curation/` with subpackages `scoring/` (prompts, parsers, q",
+            "created_at": "2026-05-17 20:27:21"
+        },
+        {
+            "id": 1750,
+            "source_type": "chain",
+            "source_ref": "mcp-servers::curation-go-migration",
+            "question": "Curation scoring + seeding + promotion pipeline ported from Rust (benchmarks/src/bin/) to Go (go/internal/curation/), structured around Scorer and SourceMaterialBuilder interfaces with per-origin impl",
+            "created_at": "2026-05-17 20:26:44"
+        },
+        {
+            "id": 1749,
+            "source_type": "bug",
+            "source_ref": "mcp-servers::chain-close-doesnt-surface-downstream-stale-block-status",
+            "question": "Closing an upstream chain leaves downstream chains' status='blocked' tasks stale; task_blockers returns [] but status stays blocked indefinitely",
+            "created_at": "2026-05-17 20:14:43"
+        }
+    ],
+    "grounding_summary": {
+        "total_search_calls": 1,
+        "used_count": 0,
+        "used_pct": 0,
+        "zero_result_gap_count": 0,
+        "pure_memory_sessions": 16
+    }
+}
